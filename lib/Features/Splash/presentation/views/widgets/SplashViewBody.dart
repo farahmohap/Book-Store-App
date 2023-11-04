@@ -2,7 +2,7 @@ import 'package:bookly/Core/utils/assets.dart';
 import 'package:bookly/Features/Splash/presentation/views/widgets/sliding_text.dart';
 import 'package:bookly/Features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -35,7 +35,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     // slidingAnimation.addListener(() {
     //   setState(() {});
     // });
-     navigateToHomePage();
+    navigateToHomePage();
   }
 
 //to avoid memory leak
@@ -44,13 +44,20 @@ class _SplashViewBodyState extends State<SplashViewBody>
     // TODO: implement dispose
     super.dispose();
     animationController.dispose();
-   
   }
 
   void navigateToHomePage() {
-     Future.delayed(const Duration(seconds: 2), () {
-      Get.to(()=>HomeView(),transition:Transition.fade ,duration: Duration(milliseconds: 200));
-    });
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        // Get.to(
+        //   () => HomeView(),
+        //   transition: Transition.fade,
+        //   duration: Duration(milliseconds: 200),
+        // );
+        GoRouter.of(context).push('/homeview');
+      },
+    );
   }
 
   @override
